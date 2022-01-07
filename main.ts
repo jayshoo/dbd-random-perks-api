@@ -15,5 +15,7 @@ addEventListener('fetch', event => {
     
   console.log('makeRandomPerkPage for', 4, from)
 
-  event.respondWith(new Response(makeRandomPerkPage(4, from)))
+  let result = makeRandomPerkPage(4, from)
+  console.log(result)
+  event.respondWith(new Response(result))
 })
