@@ -14,5 +14,5 @@ addEventListener('fetch', event => {
     return event.respondWith(new Response('invalid "from" query parameter', { status: 400 }))
     
 
-  event.respondWith(makeRandomPerkPage(4, from))
+  event.respondWith(new Response(makeRandomPerkPage(4, from)))
 })
