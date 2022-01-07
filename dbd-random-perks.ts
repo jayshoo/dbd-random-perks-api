@@ -6,16 +6,16 @@ function randomIndices(count: number, from: number): number[] {
   const entries: number[] = [...Array(from).keys()]
   const winners: number[] = []
 
-  ;[Array(count).forEach(i => {
+  ;[...Array(count).keys()].forEach(i => {
     let idx = rand(entries.length)
     winners.push(entries.splice(idx, 1)[0])
-  })]
+  })
 
   return winners
 }
 
 function indicesToPerkPageString(indices: number[]): string {
-  const ROWS = ['top', 'mid', 'bot']
+  const ROWS = ['Top', 'Mid', 'Bot']
   const ROWS_PER_PAGE = ROWS.length
   const PERKS_PER_ROW = 5
 
@@ -47,7 +47,7 @@ function indicesToPerkPageString(indices: number[]): string {
 
   let stringParts: string[] = []
   pages.forEach((pageRows, pageNumber) => {
-    let text = `page ${pageNumber + 1}: ${pageRows.join(', ')}.`
+    let text = `Page ${pageNumber + 1}: ${pageRows.join(', ')}.`
     stringParts.push(text)
   })
 
@@ -62,10 +62,10 @@ function exercise<T,U>(fn: (input: T) => U, input: T, expected: U): void {
 }
 
 Deno.test('indicesToPerkPageString', () => {
-  exercise(indicesToPerkPageString, [0,1,2,3], `page 1: top row 1 2 3 4.`)
-  exercise(indicesToPerkPageString, [3,2,1,0], `page 1: top row 1 2 3 4.`)
-  exercise(indicesToPerkPageString, [0,5,10,15], `page 1: top row 1, mid row 1, bot row 1. page 2: top row 1.`)
-  exercise(indicesToPerkPageString, [20,2,3,11], `page 1: top row 3 4, bot row 2. page 2: mid row 1.`)
+  exercise(indicesToPerkPageString, [0,1,2,3], `Page 1: Top row 1 2 3 4.`)
+  exercise(indicesToPerkPageString, [3,2,1,0], `Page 1: Top row 1 2 3 4.`)
+  exercise(indicesToPerkPageString, [0,5,10,15], `Page 1: Top row 1, Mid row 1, Bot row 1. Page 2: Top row 1.`)
+  exercise(indicesToPerkPageString, [20,2,3,11], `Page 1: Top row 3 4, Bot row 2. Page 2: Mid row 1.`)
 })
 
 
