@@ -10,7 +10,7 @@ addEventListener('fetch', event => {
     return event.respondWith(new Response('need "from" query parameter', { status: 400 }))
 
   let from = parseInt(url.searchParams.get('from')!, 10)
-  if (isNaN(from) || from < 5 || from > 100)
+  if (isNaN(from) || from < 5 || from > 1000)
     return event.respondWith(new Response('invalid "from" query parameter', { status: 400 }))
     
   console.log('makeRandomPerkPage for', 4, from)
